@@ -10,4 +10,5 @@
       ansible.builtin.package:
         name:
           - 'samba-client'
+          - 'cifs-utils'
         state: 'present'
