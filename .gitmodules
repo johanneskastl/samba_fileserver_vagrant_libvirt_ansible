@@ -10,3 +10,6 @@
 [submodule "ansible/roles/johanneskastl.install_one_or_more_packages"]
 	path = ansible/roles/johanneskastl.install_one_or_more_packages
 	url = https://github.com/johanneskastl/ansible-role-install_one_or_more_packages.git
+[submodule "ansible/roles/johanneskastl.minimal_bashrc"]
+	path = ansible/roles/johanneskastl.minimal_bashrc
+	url = https://github.com/johanneskastl/ansible-role-minimal_bashrc.git
