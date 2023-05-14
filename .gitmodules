@@ -16,3 +16,6 @@
 [submodule "ansible/roles/johanneskastl.minimal_tmux_configuration"]
 	path = ansible/roles/johanneskastl.minimal_tmux_configuration
 	url = https://github.com/johanneskastl/ansible-role-minimal_tmux_configuration.git
+[submodule "ansible/roles/johanneskastl.reboot"]
+	path = ansible/roles/johanneskastl.reboot
+	url = https://github.com/johanneskastl/ansible-role-reboot.git
