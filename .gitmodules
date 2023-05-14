@@ -4,3 +4,6 @@
 [submodule "ansible/roles/johanneskastl.add_zypper_repository"]
 	path = ansible/roles/johanneskastl.add_zypper_repository
 	url = https://github.com/johanneskastl/ansible-role-add_zypper_repository.git
+[submodule "ansible/roles/johanneskastl.create_a_vimrc"]
+	path = ansible/roles/johanneskastl.create_a_vimrc
+	url = https://github.com/johanneskastl/ansible-role-create_a_vimrc.git
