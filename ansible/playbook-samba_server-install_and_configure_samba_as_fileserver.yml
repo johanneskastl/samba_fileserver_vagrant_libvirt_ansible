@@ -1,0 +1,44 @@
+---
+- name: 'Install and configure a Samba fileserver'
+  hosts: 'samba_server'
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: 'Install the samba server packages'
+      ansible.builtin.package:
+        name:
+          - 'samba'
+          - 'samba-doc'
+          - 'samba-client'
+        state: 'present'
+
+    - name: 'Create a directory /srv/samba-vagrant-libvirt/'
+      ansible.builtin.file:
+        path: '/srv/samba-vagrant-libvirt/'
+        state: 'directory'
+        owner: 'root'
+        group: 'root'
+        mode: '0755'
+
+    - name: 'Create directories for each user in /srv/samba-vagrant-libvirt/'
+      ansible.builtin.file:
+        path: "/srv/samba-vagrant-libvirt/{{ item }}"
+        state: 'directory'
+        owner: "{{ item }}"
+        group: 'samba-vagrant-libvirt'
+        mode: '0700'
+      loop:
+        - 'testuser1'
+        - 'testuser2'
+        - 'testuser3'
+
+    - name: 'Create the smb.conf'
+      ansible.builtin.template:
+        src: 'smb.conf.j2'
+        dest: '/etc/samba/smb.conf'
+        owner: 'root'
+        group: 'root'
+        mode: '0644'
+        validate: testparm -s %s
