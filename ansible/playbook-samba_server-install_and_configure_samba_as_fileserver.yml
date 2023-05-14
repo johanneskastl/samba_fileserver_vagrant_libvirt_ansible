@@ -56,6 +56,7 @@
     #
     - name: 'Create the samba users'
       ansible.builtin.shell: >
+        set -o pipefail &&
         (pdbedit --user={{ item.username }} 2>&1 > /dev/null)
         || (echo '{{ item.password }}'; echo '{{ item.password }}')
         | smbpasswd -s -a {{ item.username }}
@@ -71,8 +72,9 @@
       loop_control:
         label: "{{ item.username }}"
 
-    - name: shell - set samba passwords correctly
+    - name: 'Set samba passwords correctly'
       ansible.builtin.shell: >
+        set -o pipefail &&
         (smbclient -U {{ item.username }}%{{ item.password }} -L 127.0.0.1 2>&1 > /dev/null)
         || (echo '{{ item.password }}'; echo '{{ item.password }}')
         | smbpasswd {{ item.username }}
