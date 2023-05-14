@@ -1,0 +1,13 @@
+---
+- name: 'Install the Samba client tools'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: 'Install the samba client tools'
+      ansible.builtin.package:
+        name:
+          - 'samba-client'
+        state: 'present'
