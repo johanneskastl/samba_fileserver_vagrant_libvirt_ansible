@@ -19,3 +19,6 @@
 [submodule "ansible/roles/johanneskastl.reboot"]
 	path = ansible/roles/johanneskastl.reboot
 	url = https://github.com/johanneskastl/ansible-role-reboot.git
+[submodule "ansible/roles/johanneskastl.zypper_ref_accept_keys"]
+	path = ansible/roles/johanneskastl.zypper_ref_accept_keys
+	url = https://github.com/johanneskastl/ansible-role-zypper_ref_accept_keys.git
