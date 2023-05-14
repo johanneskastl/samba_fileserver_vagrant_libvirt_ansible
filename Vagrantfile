@@ -29,7 +29,8 @@ Vagrant.configure("2") do |config|
   end # each-loop clients
 
   ###################################################################################
-  config.vm.define "samba-fileserver" do |node|
+
+  config.vm.define "samba-server" do |node|
 
     # which image to use
     node.vm.box = "opensuse/Leap-15.4.x86_64"
@@ -42,7 +43,7 @@ Vagrant.configure("2") do |config|
     end
 
     # set the hostname
-    node.vm.hostname = "samba-fileserver"
+    node.vm.hostname = "samba-server"
 
     # disable shared folders
     node.vm.synced_folder ".", "/vagrant", disabled: true
