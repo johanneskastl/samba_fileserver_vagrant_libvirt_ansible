@@ -1,0 +1,14 @@
+#
+# Ignore vagrant-related files
+#
+.vagrant
+Vagrantfile.1
+
+#
+# Ignore the ansible.cfg file if the user
+# has created one
+#
+ansible/ansible.cfg
+
+# put license key in this file, which is not tracked by git
+ansible/group_vars/all/SUSE_LICENSE_KEY.yml
