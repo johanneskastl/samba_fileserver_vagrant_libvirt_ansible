@@ -1,0 +1,9 @@
+---
+- name: 'Create a minimal .tmux.conf'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: 'johanneskastl.minimal_tmux_configuration'
+      additional_users: "{{ ansible_user }}"
