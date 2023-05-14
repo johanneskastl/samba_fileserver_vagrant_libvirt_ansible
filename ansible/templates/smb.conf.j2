@@ -1,0 +1,16 @@
+#
+# {{ ansible_managed }}
+#
+
+[global]
+	workgroup = VAGRANTLIBVIRT
+	passdb backend = tdbsam
+	map to guest = Bad User
+        unix password sync = yes
+        passwd program = /usr/bin/passwd %u
+        passwd chat = "*New Password:*" %n\n "*Reenter New Password:*" %n\n "*Password changed.*"
+
+[vagrant-libvirt]
+	comment = Sample share
+	path = /srv/samba-vagrant-libvirt/
+	read only = No
