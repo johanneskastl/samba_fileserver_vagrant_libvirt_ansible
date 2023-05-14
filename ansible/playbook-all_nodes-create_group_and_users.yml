@@ -1,0 +1,24 @@
+---
+- name: 'Install and configure a Samba fileserver'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+  tasks:
+
+    - name: 'Create group samba-vagrant-libvirt'
+      ansible.builtin.group:
+        name: 'samba-vagrant-libvirt'
+
+    - name: 'Create some test users'
+      ansible.builtin.user:
+        name: "{{ item }}"
+        group: 'samba-vagrant-libvirt'
+        groups:
+          - 'samba-vagrant-libvirt'
+          - 'users'
+        password: "{{ item | password_hash('sha512', 'mysecretsalt') }}"
+      loop:
+        - 'testuser1'
+        - 'testuser2'
+        - 'testuser3'
