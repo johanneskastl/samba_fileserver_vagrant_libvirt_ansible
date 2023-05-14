@@ -1,0 +1,9 @@
+---
+- name: 'Create a sensible .bashrc'
+  hosts: 'all'
+  gather_facts: true
+  become: true
+
+  roles:
+    - role: 'johanneskastl.minimal_bashrc'
+      additional_users: "{{ ansible_user }}"
