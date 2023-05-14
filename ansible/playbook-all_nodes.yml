@@ -15,5 +15,8 @@
 - name: 'Run playbook-all_nodes-create_group_and_users.yml'
   ansible.builtin.import_playbook: playbook-all_nodes-create_group_and_users.yml
 
+- name: 'Run playbook-all_nodes-install_smbclient.yml'
+  ansible.builtin.import_playbook: playbook-all_nodes-install_smbclient.yml
+
 - name: 'Run playbook-samba_server-install_and_configure_samba_as_fileserver.yml'
   ansible.builtin.import_playbook: playbook-samba_server-install_and_configure_samba_as_fileserver.yml
