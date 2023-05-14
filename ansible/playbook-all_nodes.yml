@@ -1,0 +1,13 @@
+---
+
+- name: 'Run playbook-all_nodes-create_a_vimrc.yml'
+  ansible.builtin.import_playbook: playbook-all_nodes-create_a_vimrc.yml
+
+- name: 'Run playbook-all_nodes-install_tmux.yml'
+  ansible.builtin.import_playbook: playbook-all_nodes-install_tmux.yml
+
+- name: 'Run playbook-all_nodes-minimal_tmux_configuration.yml'
+  ansible.builtin.import_playbook: playbook-all_nodes-minimal_tmux_configuration.yml
+
+- name: 'Run playbook-all_nodes-minimal_bashrc.yml'
+  ansible.builtin.import_playbook: playbook-all_nodes-minimal_bashrc.yml
