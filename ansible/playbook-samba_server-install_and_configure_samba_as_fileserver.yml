@@ -42,3 +42,18 @@
         group: 'root'
         mode: '0644'
         validate: testparm -s %s
+      notify:
+        - 'Restart the samba service'
+
+    - name: 'Start and enable the samba service'
+      ansible.builtin.service:
+        name: 'smb.service'
+        state: 'started'
+        enabled: true
+
+  handlers:
+
+    - name: 'Restart the samba service'
+      ansible.builtin.service:
+        name: 'smb.service'
+        state: 'restarted'
