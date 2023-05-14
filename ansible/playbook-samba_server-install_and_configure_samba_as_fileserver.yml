@@ -51,6 +51,43 @@
         state: 'started'
         enabled: true
 
+    #
+    # https://stackoverflow.com/questions/44762488/non-interactive-samba-user-creation-via-ansible
+    #
+    - name: 'Create the samba users'
+      ansible.builtin.shell: >
+        (pdbedit --user={{ item.username }} 2>&1 > /dev/null)
+        || (echo '{{ item.password }}'; echo '{{ item.password }}')
+        | smbpasswd -s -a {{ item.username }}
+      register: create_samba_users
+      changed_when: "'Added user' in create_samba_users.stdout"
+      loop:
+        - username: 'testuser1'
+          password: 'testuser1'
+        - username: 'testuser2'
+          password: 'testuser2'
+        - username: 'testuser3'
+          password: 'testuser3'
+      loop_control:
+        label: "{{ item.username }}"
+
+    - name: shell - set samba passwords correctly
+      ansible.builtin.shell: >
+        (smbclient -U {{ item.username }}%{{ item.password }} -L 127.0.0.1 2>&1 > /dev/null)
+        || (echo '{{ item.password }}'; echo '{{ item.password }}')
+        | smbpasswd {{ item.username }}
+      register: verify_samba_users
+      changed_when: "'New SMB password' in verify_samba_users.stdout"
+      loop:
+        - username: 'testuser1'
+          password: 'testuser1'
+        - username: 'testuser2'
+          password: 'testuser2'
+        - username: 'testuser3'
+          password: 'testuser3'
+      loop_control:
+        label: "{{ item.username }}"
+
   handlers:
 
     - name: 'Restart the samba service'
